@@ -17,7 +17,7 @@ const NotFound: React.FC = () => {
       <Typography variant="body1" gutterBottom marginBottom={3}>
         Страница, которую вы ищете, не существует.
       </Typography>
-      <Button variant="contained" color="primary" component={Link} to="/home">
+      <Button variant="contained" color="primary" component={Link} to="/">
         Go to Home
       </Button>
     </Box>

@@ -33,7 +33,7 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated }) => {
       );
 
       if (response.status === 200) {
-        navigate("/home");
+        navigate("/");
         setIsAuthenticated(true);
       } else {
         setError("Ошибка авторизации");

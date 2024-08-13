@@ -16,7 +16,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route element={<PrivateRoute isAuthenticated={isAuthenticated} />}>
-          <Route path="/home" element={<HomePage />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/devices" element={<DevicePage />} />
         </Route>
         <Route
