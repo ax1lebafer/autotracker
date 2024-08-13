@@ -1,7 +1,7 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
-import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { login } from "../api/api";
 
 interface LoginProps {
   setIsAuthenticated: (value: boolean) => void;
@@ -14,33 +14,13 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated }) => {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    try {
-      const response = await axios.post(
-        "/api/session",
-        {
-          email: email,
-          password: password,
-        },
-        {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-          auth: {
-            username: email,
-            password: password,
-          },
-        }
-      );
+    const isAuthenticated = await login(email, password);
 
-      if (response.status === 200) {
-        navigate("/");
-        setIsAuthenticated(true);
-      } else {
-        setError("Ошибка авторизации");
-      }
-    } catch (error) {
+    if (isAuthenticated) {
+      setIsAuthenticated(true);
+      navigate("/");
+    } else {
       setError("Ошибка авторизации");
-      console.error("Login error:", error);
     }
   };
 

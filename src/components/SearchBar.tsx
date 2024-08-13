@@ -7,7 +7,7 @@ interface SearchBarProps {
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ onSearch, onReset }) => {
-  const [searchId, setSearchId] = useState<number | "">();
+  const [searchId, setSearchId] = useState<string>("");
 
   const handleSearch = () => {
     if (searchId !== "") {
@@ -26,9 +26,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, onReset }) => {
         label="Search by ID"
         variant="outlined"
         value={searchId}
-        onChange={(e) =>
-          setSearchId(e.target.value === "" ? "" : Number(e.target.value))
-        }
+        onChange={(e) => setSearchId(e.target.value)}
         type="number"
         margin="normal"
       />
