@@ -10,7 +10,7 @@ import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
-    <BrowserRouter basename="/autotracker/">
+    <BrowserRouter>
       <Routes>
         <Route element={<PrivateRoute />}>
           <Route path="/" element={<HomePage />} />
