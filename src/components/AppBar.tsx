@@ -1,8 +1,18 @@
 import React from "react";
 import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { logout } from "../store/features/features";
+import { useAppDispatch } from "../hooks/hooks";
 
 const MyAppBar: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/login");
+  };
+
   return (
     <AppBar position="static">
       <Toolbar>
@@ -24,7 +34,7 @@ const MyAppBar: React.FC = () => {
           <Button color="inherit" component={Link} to="/devices">
             Devices
           </Button>
-          <Button color="inherit" component={Link} to="/login">
+          <Button color="inherit" onClick={handleLogout}>
             Logout
           </Button>
         </Box>

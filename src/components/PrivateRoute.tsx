@@ -1,11 +1,10 @@
 import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
+import { useAppSelector } from "../hooks/hooks";
 
-interface PrivateRouteProps {
-  isAuthenticated: boolean;
-}
+const PrivateRoute: React.FC = () => {
+  const isAuthenticated = useAppSelector((state) => state.auth.isAuthenticated);
 
-const PrivateRoute: React.FC<PrivateRouteProps> = ({ isAuthenticated }) => {
   return isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
 };
 

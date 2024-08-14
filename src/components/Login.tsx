@@ -1,23 +1,23 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { login } from "../api/api";
+import { login as apiLogin } from "../api/api";
+import { useAppDispatch } from "../hooks/hooks";
+import { login } from "../store/features/features";
 
-interface LoginProps {
-  setIsAuthenticated: (value: boolean) => void;
-}
-
-const Login: React.FC<LoginProps> = ({ setIsAuthenticated }) => {
+const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  const dispatch = useAppDispatch();
+
   const handleLogin = async () => {
-    const isAuthenticated = await login(email, password);
+    const isAuthenticated = await apiLogin(email, password);
 
     if (isAuthenticated) {
-      setIsAuthenticated(true);
+      dispatch(login());
       navigate("/");
     } else {
       setError("Ошибка авторизации");
