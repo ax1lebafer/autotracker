@@ -25,7 +25,7 @@ const DeviceList: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get("/api/devices")
+      .get("https://gps.autotracker.group/api/devices")
       .then((res) => {
         setDevices(res.data);
         setFilteredDevices(res.data);
